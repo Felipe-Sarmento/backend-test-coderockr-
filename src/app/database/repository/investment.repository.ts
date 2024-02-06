@@ -3,6 +3,7 @@ import { Repository } from '../../shared/model/repository';
 import { Investment } from 'src/app/database/schema/investment.schema';
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
+import { WithdrawType } from 'src/app/investment/model/withdraw.type';
 
 @Injectable()
 export class InvestmentRepository implements Repository<Investment> {
@@ -48,5 +49,19 @@ export class InvestmentRepository implements Repository<Investment> {
     }
 
     return investmentExists;
+  }
+
+  async insertWithdraw(
+    id: string,
+    withdraw: WithdrawType,
+  ): Promise<Investment> {
+    const investmentUpdated = await this.investment
+      .findById(id)
+      .populate('withdraw')
+      .exec();
+
+    investmentUpdated.withdraw = withdraw;
+
+    return await investmentUpdated.save();
   }
 }

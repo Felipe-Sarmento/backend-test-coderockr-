@@ -82,9 +82,12 @@ export class InvestmentController {
     );
   }
 
-  @Post('/withdraw')
-  withdrawInvestment(): string {
-    return 'Investimento sacado';
+  @Post('/withdraw/:id')
+  withdrawInvestment(
+    @IdParam() id: string,
+    @Body() { date },
+  ): Promise<InvestmentEntity> {
+    return this.investmentService.withdrawInvestment(id, date);
   }
 
   @Get('/by-owner/:id')

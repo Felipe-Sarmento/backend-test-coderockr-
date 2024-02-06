@@ -26,14 +26,6 @@ export class WithdrawEntity implements WithdrawType {
   withdrawDate: Date;
 
   @ApiProperty({
-    description: 'Percentage of taxation',
-    minimum: 0.01,
-    example: 0.5,
-    type: 'number',
-  })
-  taxPercentage: number;
-
-  @ApiProperty({
     description: 'Id of the investment',
     type: 'string',
   })

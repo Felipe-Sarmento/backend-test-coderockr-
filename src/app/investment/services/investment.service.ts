@@ -4,6 +4,7 @@ import { GetInvestmentUsecase } from '../usecases/get-investment.usecase';
 import { CreateInvestmentUsecase } from '../usecases/create-investment.usecase';
 import { UpdateInvestmentUsecase } from '../usecases/update-investment.usecase';
 import { DeleteInvestmentUsecase } from '../usecases/delete-investment.usecase';
+import { WithdrawInvestmentUseCase } from '../usecases/withdraw-investment.usecase';
 
 @Injectable()
 export class InvestmentService {
@@ -12,6 +13,7 @@ export class InvestmentService {
     private readonly createInvestmentUseCase: CreateInvestmentUsecase,
     private readonly updateInvestmentUseCase: UpdateInvestmentUsecase,
     private readonly deleteInvestmentUseCase: DeleteInvestmentUsecase,
+    private readonly withdrawInvestmentUseCase: WithdrawInvestmentUseCase,
   ) {}
 
   async createInvestment(
@@ -34,5 +36,9 @@ export class InvestmentService {
     initialInvestment: number,
   ): Promise<InvestmentEntity> {
     return this.updateInvestmentUseCase.execute(id, initialInvestment);
+  }
+
+  async withdrawInvestment(id: string, date?: Date) {
+    return this.withdrawInvestmentUseCase.execute(id, date);
   }
 }
