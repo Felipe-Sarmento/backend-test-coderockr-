@@ -19,7 +19,7 @@ export class InvestmentRepository implements Repository<Investment> {
   add(initialInvestment: number, ownerId: string): Promise<Investment> {
     return new this.investment({ initialInvestment, ownerId }).save();
   }
-  async update(id: string, initialInvestment: number): Promise<any> {
+  async update(id: string, initialInvestment: number): Promise<Investment> {
     const investmentUpdated = await this.investment
       .updateOne({ _id: id }, { initialInvestment })
       .exec();
@@ -33,7 +33,9 @@ export class InvestmentRepository implements Repository<Investment> {
 
     return await this.get(id);
   }
-  async delete(id: string): Promise<any> {
+  async delete(id: string): Promise<Investment> {
+    const investmentExists = await this.get(id);
+
     const investmentDeleted = await this.investment
       .deleteOne({ _id: id })
       .exec();
@@ -45,6 +47,6 @@ export class InvestmentRepository implements Repository<Investment> {
       return null;
     }
 
-    return await this.get(id);
+    return investmentExists;
   }
 }

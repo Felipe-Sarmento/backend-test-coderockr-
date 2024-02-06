@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { InvestmentType } from '../model/investment.type';
+import { WithdrawType } from '../model/withdraw.type';
+import { WithdrawEntity } from './withdraw.model';
 
 export class InvestmentEntity implements InvestmentType {
   @ApiProperty({
@@ -10,15 +12,6 @@ export class InvestmentEntity implements InvestmentType {
     type: 'number',
   })
   initialInvestment: number;
-
-  @ApiProperty({
-    description: 'Total value withdrawn from the investment',
-    minimum: 0,
-    default: 1000,
-    example: 1000,
-    type: 'number',
-  })
-  withdrawnValue: number;
 
   @ApiProperty({
     description: 'id of the investment',
@@ -42,9 +35,9 @@ export class InvestmentEntity implements InvestmentType {
   creationDate: Date;
 
   @ApiProperty({
-    description: 'If the investment has been withdrawn',
-    default: false,
-    type: 'boolean',
+    description: 'Withdraw data',
+    default: null,
+    type: WithdrawEntity,
   })
-  withdrawn: boolean;
+  withdraw: WithdrawType;
 }

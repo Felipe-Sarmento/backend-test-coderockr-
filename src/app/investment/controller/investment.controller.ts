@@ -1,9 +1,7 @@
-import { Body, Controller, Delete, Get, Post, Put, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
-  ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiParam,
@@ -55,13 +53,12 @@ export class InvestmentController {
     required: true,
   })
   @ApiNotFoundResponse({ description: 'Investment deleted' })
-  @ApiNoContentResponse({
+  @ApiOkResponse({
     description: 'Investment deleted',
     type: InvestmentEntity,
   })
-  deleteInvestment(@IdParam() id: string, @Res() res: Response): void {
-    this.investmentService.deleteInvestment(id);
-    res.status(204).send();
+  deleteInvestment(@IdParam() id: string): Promise<InvestmentEntity> {
+    return this.investmentService.deleteInvestment(id);
   }
 
   @Put('/:id')

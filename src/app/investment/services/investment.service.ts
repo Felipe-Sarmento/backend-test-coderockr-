@@ -25,8 +25,8 @@ export class InvestmentService {
     return this.getInvestmentUseCase.execute(id);
   }
 
-  async deleteInvestment(id: string): Promise<string> {
-    return this.deleteInvestmentUseCase.execute(id);
+  async deleteInvestment(id: string): Promise<InvestmentEntity> {
+    return await this.deleteInvestmentUseCase.execute(id);
   }
 
   async updateInvestment(

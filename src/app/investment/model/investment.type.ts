@@ -1,10 +1,11 @@
+import { WithdrawType } from './withdraw.type';
+
 export type InvestmentType = {
   initialInvestment: number;
-  withdrawnValue: number;
   ownerId: string;
   creationDate: Date;
   _id: string;
-  withdrawn: boolean;
+  withdraw: WithdrawType;
 };
 
 export type CreateInvestmentType = InvestmentType;

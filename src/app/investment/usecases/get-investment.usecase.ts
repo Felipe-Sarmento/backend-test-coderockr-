@@ -9,6 +9,7 @@ export class GetInvestmentUsecase implements UseCase<InvestmentEntity> {
 
   async execute(id: string): Promise<InvestmentEntity> {
     const investmentExists = await this.investmentRepository.get(id);
+
     if (!investmentExists) {
       throw new NotFoundException('Investment not found');
     }
