@@ -1,5 +1,6 @@
 export type InvestmentType = {
-  amount: number;
+  initialInvestment: number;
+  withdrawnValue: number;
   ownerId: string;
   creationDate: Date;
   _id: string;
@@ -9,5 +10,5 @@ export type InvestmentType = {
 export type CreateInvestmentType = InvestmentType;
 
 export type UpdateInvestmentType = {
-  amount: number;
+  initialInvestment: number;
 };

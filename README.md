@@ -86,3 +86,16 @@ This coding challenge was inspired on [kinvoapp/kinvo-back-end-test](https://git
 [taxes]: #taxation
 [interest]: #interest-calculation
 [compound gain]: https://www.investopedia.com/terms/g/gain.asp
+
+
+// to do
+
+1. Add global config
+   1. Add mode to run (local, dev, production)
+   2. add custom port support
+2. Pass mongo config to .env
+3. Add log service
+   1. Log interactions with mongo
+   2. Log CRUD 
+4. Create Calculate Interest 
+5. Create Calculate

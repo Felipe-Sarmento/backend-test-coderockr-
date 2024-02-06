@@ -13,7 +13,7 @@ import { CreateInvestmentDTO } from '../dto/create.investment.dto';
 import { UpdateInvestmentDTO } from '../dto/update.investment.dto';
 import { InvestmentEntity } from '../dto/investment.model';
 import { InvestmentService } from '../services/investment.service';
-import { IdParam } from 'src/shared/pipe/id-param.decorator';
+import { IdParam } from 'src/app/shared/pipe/id-param.decorator';
 
 @ApiTags('Investment')
 @Controller('investment')
@@ -27,9 +27,9 @@ export class InvestmentController {
     type: InvestmentEntity,
   })
   async createInvestment(
-    @Body() { amount, ownerId }: CreateInvestmentDTO,
+    @Body() { initialInvestment, ownerId }: CreateInvestmentDTO,
   ): Promise<InvestmentEntity> {
-    return this.investmentService.createInvestment(amount, ownerId);
+    return this.investmentService.createInvestment(initialInvestment, ownerId);
   }
 
   @Get('/:id')
@@ -81,7 +81,7 @@ export class InvestmentController {
   ): Promise<InvestmentEntity> {
     return this.investmentService.updateInvestment(
       id,
-      updateInvestmentDTO.amount,
+      updateInvestmentDTO.initialInvestment,
     );
   }
 

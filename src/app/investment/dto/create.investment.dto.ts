@@ -1,12 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { InvestmentType } from '../model/investment.type';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { CreateInvestmentType } from '../model/investment.type';
 
-export class InvestmentEntity implements InvestmentType {
-  @ApiProperty({
-    description: 'id of the investment',
-    default: '5f0e5e9e8b0d9a1c9c3f4e4a',
-    type: 'uuid',
-  })
+export class CreateInvestmentDTO implements CreateInvestmentType {
   _id: string;
 
   @ApiProperty({
@@ -16,7 +11,16 @@ export class InvestmentEntity implements InvestmentType {
     example: 1000,
     type: 'number',
   })
-  amount: number;
+  initialInvestment: number;
+
+  @ApiProperty({
+    description: 'Total value withdrawn from the investment',
+    minimum: 0,
+    default: 1000,
+    example: 1000,
+    type: 'number',
+  })
+  withdrawnValue: number;
 
   @ApiProperty({
     description: 'Owner of the investment',
@@ -25,14 +29,14 @@ export class InvestmentEntity implements InvestmentType {
   })
   ownerId: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'Creation date of the investment, can be a past date or today',
     default: new Date(),
     type: 'date',
   })
   creationDate: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'If the investment has been withdrawn',
     default: false,
     type: 'boolean',

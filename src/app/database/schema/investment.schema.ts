@@ -1,13 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { InvestmentType } from '../model/investment.type';
+import { InvestmentType } from '../../investment/model/investment.type';
 
 export type InvestmentDocument = HydratedDocument<Investment>;
 
 @Schema()
 export class Investment implements InvestmentType {
   @Prop({ required: true })
-  amount: number;
+  initialInvestment: number;
+
+  @Prop({ default: null })
+  withdrawnValue: number;
 
   @Prop({ required: true })
   ownerId: string;

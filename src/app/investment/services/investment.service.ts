@@ -15,10 +15,10 @@ export class InvestmentService {
   ) {}
 
   async createInvestment(
-    amount: number,
+    initialInvestment: number,
     ownerId: string,
   ): Promise<InvestmentEntity> {
-    return this.createInvestmentUseCase.execute(amount, ownerId);
+    return this.createInvestmentUseCase.execute(initialInvestment, ownerId);
   }
 
   async viewInvestment(id: string): Promise<InvestmentEntity> {
@@ -31,8 +31,8 @@ export class InvestmentService {
 
   async updateInvestment(
     id: string,
-    amount: number,
+    initialInvestment: number,
   ): Promise<InvestmentEntity> {
-    return this.updateInvestmentUseCase.execute(id, amount);
+    return this.updateInvestmentUseCase.execute(id, initialInvestment);
   }
 }

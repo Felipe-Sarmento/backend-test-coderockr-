@@ -9,5 +9,5 @@ export class UpdateInvestmentDTO implements UpdateInvestmentType {
     example: 2000,
     type: 'number',
   })
-  amount: number;
+  initialInvestment: number;
 }
